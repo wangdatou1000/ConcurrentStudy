@@ -1,30 +1,31 @@
 
 public class NoVisiabilityTest extends Thread {
 
-	private   boolean ready;
+    private boolean ready = false;
 
-	private int number;
+    private int number;
 
-	public void run() {
-		while (!ready) {
-			int a=0;
-//			number++;
-//			//Thread.yield();
-			//System.out.println(number++);
-		}
-		System.out.println(ready);
-	}
+    public void run() {
+        while (number!=-1) {
+            int a = 0;
+            number++;
+//			Thread.yield();
+        }
+        System.out.println("\n"+number+"\n"+ready);
+    }
 
-	public void readyOn() {
-			this.ready = true;
-	}
+    public void readyOn() {
+        this.ready = true;
+        number = -1;
+    }
 
-	public static void main(String[] args) throws InterruptedException {
-		NoVisiabilityTest readThread = new NoVisiabilityTest();
-		readThread.start();
-		Thread.sleep(2000);
-//		for(int i=0;i<20000;i++)
-		   System.out.println("====" + readThread.ready);
-		readThread.readyOn();
-	}
+    public static void main(String[] args) throws InterruptedException {
+        NoVisiabilityTest readThread = new NoVisiabilityTest();
+        readThread.start();
+        while(readThread.number!=-1){
+            System.out.println(readThread.number);
+            readThread.readyOn();
+        }
+
+    }
 }

@@ -13,14 +13,15 @@ public class VolatileTest {
 	            System.out.println("i=" + i + " j=" + j);
 	        }
 	    }
-	public static void main(StringStudy[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException {
 		  for (int i = 0; i < 20000; i++) {
 	            Thread t1 = new Thread(new Runnable() {
 	                @Override
 	                public void run() {
-	                	try {
-							Thread.sleep(60);
-						} catch (InterruptedException e) {
+	                  try {
+//							Thread.sleep(60);
+							Thread.yield();
+						} catch (Exception e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}

@@ -1,30 +1,30 @@
 /**
- * volatile¹Ø¼ü×ÖµÄ²âÊÔ
+ * volatileå…³é”®å­—çš„æµ‹è¯•
  * @author trytocatch
  * @date 2013-1-7
  */
 public class Volatile {
-    long time1;//testÔËĞĞÊ±£¬Ê¹ÓÃÁ½¶ÀÁ¢µÄ±äÁ¿À´±£´æÊ±¼ä£¬±ÜÃâÒòÊ¹ÓÃÍ¬²½¶ø¶Ôt1,t2Ôì³ÉÓ°Ïì
+    long time1;//testè¿è¡Œæ—¶ï¼Œä½¿ç”¨ä¸¤ç‹¬ç«‹çš„å˜é‡æ¥ä¿å­˜æ—¶é—´ï¼Œé¿å…å› ä½¿ç”¨åŒæ­¥è€Œå¯¹t1,t2é€ æˆå½±å“
     long time2;
-    volatile
+    volatile   
     boolean boolValue=true;//volatile
     public static void main(StringStudy[] args) throws InterruptedException{
-        int size=50;//²âÊÔ¸öÊı
+        int size=50;//æµ‹è¯•ä¸ªæ•°
         Volatile vs[]=new Volatile[size];
         long timeSum = 0;
         for(int n=0;n<size;n++)
             (vs[n]=new Volatile()).test();
 //        Thread.sleep(1000);
-        for(int n=0;n<size;n++){//Í³¼Æ³ö£¬ËùÓĞÏß³Ì´ÓboolValue±äÎªfalseµ½while(boolValue)Ìø³öËù»¨Ê±¼äµÄ×ÜºÍ
+        for(int n=0;n<size;n++){//ç»Ÿè®¡å‡ºï¼Œæ‰€æœ‰çº¿ç¨‹ä»boolValueå˜ä¸ºfalseåˆ°while(boolValue)è·³å‡ºæ‰€èŠ±æ—¶é—´çš„æ€»å’Œ
             timeSum+=vs[n].time2 - vs[n].time1;
             System.out.print(n+"\t"+vs[n].time2 +'\t' + vs[n].time1+'\t'+(vs[n].time2 - vs[n].time1)+'\n');
         }
-        System.out.println("ÏìÓ¦Ê±¼ä×ÜºÍ(ºÁÎ¢Ãë)£º"+timeSum);
+        System.out.println("å“åº”æ—¶é—´æ€»å’Œ(æ¯«å¾®ç§’)ï¼š"+timeSum);
         long time1,time2;
         time1 = System.nanoTime();
 //        Thread.yield();
         time2 = System.nanoTime();
-        System.out.println(time2-time1);//Ë³ĞòÖ´ĞĞÁ½ÌõÓï¾äµÄÊ±¼ä¼ä¸ô£¬¹©²Î¿¼
+        System.out.println(time2-time1);//é¡ºåºæ‰§è¡Œä¸¤æ¡è¯­å¥çš„æ—¶é—´é—´éš”ï¼Œä¾›å‚è€ƒ
     }
 
     public void test() throws InterruptedException{
@@ -44,7 +44,7 @@ public class Volatile {
         t2.start();
         Thread.yield();
         t1.start();
-        t1.join();//±£Ö¤Ò»´ÎÖ»ÔËĞĞÒ»¸ö²âÊÔ£¬ÒÔ´Ë¼õÉÙÆäËüÏß³ÌµÄµ÷¶È¶Ô t2¶ÔboolValueµÄÏìÓ¦Ê±¼ä µÄÓ°Ïì
+        t1.join();//ä¿è¯ä¸€æ¬¡åªè¿è¡Œä¸€ä¸ªæµ‹è¯•ï¼Œä»¥æ­¤å‡å°‘å…¶å®ƒçº¿ç¨‹çš„è°ƒåº¦å¯¹ t2å¯¹boolValueçš„å“åº”æ—¶é—´ çš„å½±å“
         t2.join();
     }
 }
